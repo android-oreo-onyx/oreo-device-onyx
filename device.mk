@@ -167,7 +167,7 @@ PRODUCT_PACKAGES += \
     audio.stub.default \
     audio_policy.stub \
     gralloc.default \
-    sensor.onyx \
+    sensors.onyx \
     vibrator.default
 
 # IPv6
