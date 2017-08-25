@@ -216,7 +216,9 @@ PRODUCT_PACKAGES += \
 # RIL
 PRODUCT_PACKAGES += \
     libcnefeatureconfig \
-    libxml2
+    libxml2 \
+    Stk \
+    android.hardware.radio@1.0-impl
 
 # Recovery
 PRODUCT_PACKAGES += \
