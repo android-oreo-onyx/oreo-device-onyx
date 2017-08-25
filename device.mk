@@ -119,13 +119,20 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
     android.hardware.graphics.mapper@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.composer@2.1-impl \
+    android.hardware.memtrack@1.0-impl \
     copybit.msm8974 \
     gralloc.msm8974 \
     hwcomposer.msm8974 \
     memtrack.msm8974 \
     liboverlay \
-    libtinyxml
+    libtinyxml \
+    libhdmi \
+    libqdutils \
+    libqdMetaData \
+    libqservice \
+    libvirtual
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -151,6 +158,17 @@ PRODUCT_PACKAGES += \
 # GNSS HAL
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl
+
+# NEW HAL
+PRODUCT_PACKAGES += \
+    local_time.default \
+    camera.default \
+    audio.primary.default \
+    audio.stub.default \
+    audio_policy.stub \
+    gralloc.default \
+    sensor.onyx \
+    vibrator.default
 
 # IPv6
 # Removed as now.
