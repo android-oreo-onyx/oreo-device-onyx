@@ -175,9 +175,9 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl
 
 # FM
-PRODUCT_PACKAGES += \
-    FMRadio \
-    libfmjni
+#PRODUCT_PACKAGES += \
+#    FMRadio \
+#    libfmjni
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -199,6 +199,9 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
+PRODUCT_PACKAGES += \
+    libmm-omxcore
+
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
@@ -215,7 +218,8 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl \
-    power.msm8974
+    power.msm8974 \
+    power.default
 
 # RIL
 PRODUCT_PACKAGES += \
@@ -279,7 +283,9 @@ PRODUCT_PACKAGES += \
     p2p_supplicant_overlay.conf \
     hostapd_default.conf \
     hostapd.accept \
-    hostapd.deny
+    hostapd.deny \
+    libwifi-hal-qcom \
+    lib_driver_cmd_qcwcn
 
 PRODUCT_PACKAGES += \
     wcnss_service \
