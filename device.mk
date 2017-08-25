@@ -28,6 +28,7 @@ TARGET_SCREEN_WIDTH := 1080
 # Display
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+PRODUCT_PROPERTY_OVERRIDES += debug.hwui.use_buffer_age=false
 
 # Ramdisk
 PRODUCT_PACKAGES += \
