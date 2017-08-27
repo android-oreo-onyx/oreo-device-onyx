@@ -190,7 +190,8 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/rootdir/etc/fstab.qcom
 
 # RIL
-#TARGET_RIL_VARIANT := caf
+BOARD_PROVIDES_LIBRIL := true
+BOARD_PROVIDES_RILD := true
 
 # RPC
 TARGET_NO_RPC := true
@@ -201,6 +202,9 @@ TARGET_NO_RPC := true
 
 # Snapdragon LLVM Compiler
 TARGET_USE_SDCLANG := true
+
+# HIDL Manifest
+DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/hidl/manifest.xml
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
