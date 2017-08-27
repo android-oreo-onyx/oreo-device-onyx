@@ -21,6 +21,16 @@ $(call inherit-product, device/oneplus/onyx/hwui-memory.mk)
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# Perbuilt Kernel
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+  LOCAL_KERNEL := device/oneplus/onyx/kernel/zImage-dtb
+else
+  LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES := \
+    $(LOCAL_KERNEL):kernel
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
@@ -104,9 +114,9 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@2.0-impl \
     android.hardware.broadcastradio@1.0-impl
 
-#PRODUCT_PACKAGES += \
-#    audio.primary.msm8974 \
-#    libqcompostprocbundle 
+PRODUCT_PACKAGES += \
+    audio.primary.msm8974 \
+    libqcompostprocbundle 
 
 # Camera
 #PRODUCT_PACKAGES += \
@@ -257,9 +267,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
 
-#PRODUCT_PACKAGES += \
-#    libshims_sensors
-
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.contexthub@1.0-impl
@@ -287,6 +294,14 @@ PRODUCT_PACKAGES += \
 # HIDL
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/hidl/manifest.xml:system/vendor/manifest.xml
+
+# BoringSSL Compat
+PRODUCT_PACKAGES += \
+    libboringssl-compat
+
+# STLPort Prebuilt Binary
+PRODUCT_PACKAGES += \
+    libstlport
 
 # WiFi
 PRODUCT_COPY_FILES += \
