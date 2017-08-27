@@ -221,6 +221,9 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
+# Disable Dexpreopt
+WITH_DEXPREOPT := false
+
 # Build Old-style zip in test status
 BLOCK_BASED_OTA := false
 
