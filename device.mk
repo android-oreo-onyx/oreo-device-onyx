@@ -109,6 +109,7 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     libqcomvisualizer \
     libqcomvoiceprocessing \
+    libqcomvoiceprocessingdescriptors \
     tinymix \
     android.hardware.soundtrigger@2.0-impl \
     android.hardware.audio@2.0-impl \
@@ -155,7 +156,8 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8974
+    gps.msm8974 \
+    libgps.utils
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
@@ -258,6 +260,7 @@ PRODUCT_PACKAGES += \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
     libOmxVdec \
+    libOmxVdecHevc \
     libOmxVenc \
     libstagefrighthw
 
@@ -277,6 +280,13 @@ PRODUCT_PACKAGES += \
 # Recovery
 PRODUCT_PACKAGES += \
     librecovery_updater_oppo
+
+# Misc
+PRODUCT_PACKAGES += \
+    curl \
+    libcurl \
+    libnl_2 \
+    libbson \
 
 # Sensors
 PRODUCT_COPY_FILES += \
@@ -313,13 +323,18 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/hidl/manifest.xml:system/vendor/manifest.xml
 
-# BoringSSL Compat
+# ConsumerIR
 PRODUCT_PACKAGES += \
-    libboringssl-compat
+    consumerir.default \
+    android.hardware.ir@1.0-impl
 
 # STLPort Prebuilt Binary
 PRODUCT_PACKAGES += \
     libstlport
+
+# Default OMX service to non-Treble
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.media.treble_omx=false
 
 # WiFi
 PRODUCT_COPY_FILES += \

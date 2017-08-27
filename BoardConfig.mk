@@ -16,6 +16,7 @@
 #
 
 PLATFORM_PATH := device/oneplus/onyx
+
 TARGET_DEVICE := onyx
 
 # Assertions
@@ -107,17 +108,20 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
+# CNE
+BOARD_USES_QCNE := true
+
 # Android native double tap to wake
 TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
 
 # Enable dexpreopt to speed boot time
-ifeq ($(HOST_OS),linux)
-  ifeq ($(call match-word-in-list,$(TARGET_BUILD_VARIANT),user),true)
-    ifeq ($(WITH_DEXPREOPT_BOOT_IMG_ONLY),)
-      WITH_DEXPREOPT_BOOT_IMG_ONLY := true
-    endif
-  endif
-endif
+#ifeq ($(HOST_OS),linux)
+#  ifeq ($(call match-word-in-list,$(TARGET_BUILD_VARIANT),user),true)
+#    ifeq ($(WITH_DEXPREOPT_BOOT_IMG_ONLY),)
+#      WITH_DEXPREOPT_BOOT_IMG_ONLY := true
+#    endif
+#  endif
+# endif
 
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -145,6 +149,7 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # GPS
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8974
 USE_DEVICE_SPECIFIC_GPS := true
 USE_DEVICE_SPECIFIC_LOC_API := true
 
@@ -221,10 +226,26 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
+# Enables CSVT
+TARGET_USES_CSVT := true
+
+# Enable sensor multi HAL
+USE_SENSOR_MULTI_HAL := true
+
+TARGET_USES_PCI_RCS := false
+
+MALLOC_SVELTE := true
+
 # Disable Dexpreopt
 WITH_DEXPREOPT := false
 
 # Build Old-style zip in test status
 BLOCK_BASED_OTA := false
+
+# HACK
+ifeq ($(TARGET_DEVICE),onyx)
+$(shell mkdir -p $(OUT_DIR)/obj/KERNEL_OBJ/usr)
+$(shell touch $(OUT_DIR)/obj/KERNEL_OBJ/usr/export_includes)
+endif
 
 -include vendor/oneplus/onyx/BoardConfigVendor.mk

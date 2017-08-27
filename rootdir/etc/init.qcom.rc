@@ -1,4 +1,3 @@
-
 #
 # Copyright 2016 The CyanogenMod Project
 #
@@ -19,7 +18,7 @@ import init.qcom.usb.rc
 import init.qcom.power.rc
 
 on init
-    export LD_SHIM_LIBS "/system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so:/system/lib/libgui.so|libshims_sensors.so"
+    export LD_SHIM_LIBS "/system/lib/libgui.so|libshims_sensors.so"
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -163,6 +162,9 @@ on boot
     # Wifi firmware reload path
     chown wifi wifi /sys/module/wlan/parameters/fwpath
 
+    # Mark wifi driver as unloaded - "ok" indicates loaded
+    setprop wlan.driver.status not_ok
+
 on post-fs
     # Reverse Keys
     write /proc/s1302/key_rep 1
@@ -270,6 +272,7 @@ on post-fs
     chmod 0660 /proc/tri-state-key/keyCode_bottom
 
 on post-fs-data
+    rm /data/logcat.log
     # Create directory for TZ Apps
     mkdir /data/misc/qsee 0770 system system
 
@@ -362,6 +365,11 @@ on property:hw.fm.init=1
 on property:hw.fm.init=0
     write /sys/module/radio_iris_transport/parameters/fmsmd_set 0
 
+service logcat_debug /system/bin/logcat -b -all -f /data/logcat.log -v threadtime
+    class main
+    user root
+    group system
+
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
@@ -429,7 +437,7 @@ service charger /charger
     class charger
     critical
     group system graphics
-    seclabel u:r:healthd:s0
+    #seclabel u:r:healthd:s0
 
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
@@ -528,4 +536,4 @@ service ril-daemon2 /vendor/bin/hw/rild -c 2
     socket sap_uim_socket1 stream 660 bluetooth bluetooth
     socket rild-debug2 stream 660 radio system
     user root
-group radio cache inet misc audio log readproc wakelock
+    group radio cache inet misc audio log readproc wakelock
