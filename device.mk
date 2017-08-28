@@ -121,9 +121,13 @@ PRODUCT_PACKAGES += \
     libqcompostprocbundle 
 
 # Camera
-#PRODUCT_PACKAGES += \
-#    camera.msm8974 \
-#    Snap
+PRODUCT_PACKAGES += \
+    camera.msm8974 \
+    libmmcamera_interface \
+    libqomx_core \
+    libmm-qcamera \
+    libmmjpeg_interface \
+    libshims_camera
 
 PRODUCT_PACKAGES += \
     camera.device@1.0-impl \
@@ -190,6 +194,10 @@ PRODUCT_PACKAGES += \
     gralloc.default \
     sensors.onyx \
     vibrator.default
+
+# Atomic
+PRODUCT_PACKAGES += \
+    libshims_atomic
 
 # IPv6
 # Removed as now.
