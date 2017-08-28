@@ -2135,14 +2135,6 @@ int QCamera2HardwareInterface::storeMetaDataInBuffers(int enable)
  * PARAMETERS : none
  *
  * RETURN     : int32_t type of status
-This repository
-
-    Pull requests
-    Issues
-    Marketplace
-    Explore
-
-    @67891abc 
  *              NO_ERROR  -- success
  *              none-zero failure code
  *==========================================================================*/
@@ -2181,14 +2173,6 @@ int QCamera2HardwareInterface::startRecording()
 }
 
 /*===========================================================================
-This repository
-
-    Pull requests
-    Issues
-    Marketplace
-    Explore
-
-    @67891abc 
  * FUNCTION   : stopRecording
  *
  * DESCRIPTION: stop recording impl
